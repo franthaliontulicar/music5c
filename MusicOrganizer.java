@@ -191,33 +191,43 @@ public class MusicOrganizer
     }
 
     public void asignarPista(String filename){
-       
-        Track pista = new Track(filename);     
-        
-            if(pista.getPista() < tracks.size()){
-                addTrack(pista);
-            }
 
-        
+        Track pista = new Track(filename);     
+
+        if(pista.getPista() < tracks.size()){
+            addTrack(pista);
+        }
+
 
     }
-    
+
     public void isPlaying(){
-         if(reproduciendo){
-             System.out.println(" EK EK EK ERROR:Se esta reproduciendo una cancion.");
-         }
-         else{
-             System.out.println("En este momento no se esta reproduciendo ninguna cancion.");
-         }
-     }
-     
-     public void listAllTrackWithIterator(){
-        
+        if(reproduciendo){
+            System.out.println(" EK EK EK ERROR:Se esta reproduciendo una cancion.");
+        }
+        else{
+            System.out.println("En este momento no se esta reproduciendo ninguna cancion.");
+        }
+    }
+
+    public void listAllTrackWithIterator(){
+
         Iterator <Track> iterador = tracks.iterator();
         while (iterador.hasNext()) {
             System.out.println(iterador.next().getDetails());
         }     
+
+    }
+
+    public void removeByArtist(String artista){
         
-     }
+        Iterator <Track> iterador = tracks.iterator();
+        while (iterador.hasNext()) {
+            if (iterador.next().getArtist().contains(artista)) {
+                iterador.remove();
+            }
+        }
+        
+    }
 }
 
