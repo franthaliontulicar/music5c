@@ -21,13 +21,13 @@ public class MusicOrganizer
     /**
      * Create a MusicOrganizer
      */
-    public MusicOrganizer()
+    public MusicOrganizer(String titulo)
     {
         tracks = new ArrayList<Track>();
         player = new MusicPlayer();
         reader = new TrackReader();
         reproduciendo = false;
-        readLibrary("audio");
+        readLibrary(titulo);
         System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
         System.out.println();
     }
