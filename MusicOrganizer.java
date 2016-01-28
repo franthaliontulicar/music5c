@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Iterator;
-
+import java.util.Random;
 /**
  * A class to hold details of audio tracks.
  * Individual tracks may be played.
@@ -17,17 +17,21 @@ public class MusicOrganizer
     // A reader that can read music files and load them as tracks.
     private TrackReader reader;
     private boolean reproduciendo;
+    private ArrayList<Integer> numeroCancion;
 
     /**
      * Create a MusicOrganizer
      */
-    public MusicOrganizer(String titulo)
+    public MusicOrganizer(String carpeta)
     {
         tracks = new ArrayList<Track>();
         player = new MusicPlayer();
         reader = new TrackReader();
         reproduciendo = false;
-        readLibrary(titulo);
+        for(int i = 1; i < 5; i++) {
+            numeroCancion.add(0);
+        }
+        readLibrary(carpeta);
         System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
         System.out.println();
     }
@@ -198,7 +202,6 @@ public class MusicOrganizer
             addTrack(pista);
         }
 
-
     }
 
     public void isPlaying(){
@@ -220,16 +223,16 @@ public class MusicOrganizer
     }
 
     public void removeByArtist(String artista){
-        
+
         Iterator <Track> iterador = tracks.iterator();
         while (iterador.hasNext()) {
             if (iterador.next().getArtist().contains(artista)) {
                 iterador.remove();
             }
         }
-        
+
     }
-    
+
     public void removeByTitle(String titulo){
         Iterator <Track> iterador = tracks.iterator();
         while (iterador.hasNext()) {
@@ -237,7 +240,17 @@ public class MusicOrganizer
                 iterador.remove();
             }
         }
-    
+
     }
+
+    public void playRandom(){
+        Random numAleatorio;
+        numAleatorio = new Random ();
+        for (int i=0; i < numeroCancion.size(); i++) {
+            numeroCancion.set(i, numAleatorio.nextInt(5) );
+        }
+    }
+
 }
+
 
